@@ -28,4 +28,6 @@ Lancez l'interface avec la commande :
 *Astuce d'apprentissage : Apprenez un même geste 3 ou 4 fois avec de légères variations naturelles pour améliorer la robustesse de la reconnaissance.*
 
 ---
+Lien des sujets de tp : https://github.com/truillet/upssitech/tree/master/SRI/5A/IHM
+---
 *D'autres TPs seront ajoutés prochainement dans leurs dossiers respectifs.*
