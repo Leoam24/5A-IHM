@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" 
+         root="racine" 
+         xmlns="http://www.w3.org/2001/06/grammar" 
+         tag-format="semantics/1.0">
+
+  <rule id="racine" scope="public">
+    <ruleref uri="#action"/>
+    <ruleref uri="#aliment"/>
+    <item repeat="0-1">
+      <ruleref uri="#position"/>
+    </item>
+    <tag>
+      out = rules.action + " " + rules.aliment;
+      if (rules.position) {
+        out = out + " " + rules.position;
+      }
+    </tag>
+  </rule>
+
+  <!-- Verbe d'action -->
+  <rule id="action">
+    <one-of>
+      <item>ajoute <tag>out = "action=AJOUTER";</tag></item>
+      <item>mets <tag>out = "action=AJOUTER";</tag></item>
+      <item>enlève <tag>out = "action=RETIRER";</tag></item>
+      <item>supprime <tag>out = "action=RETIRER";</tag></item>
+    </one-of>
+  </rule>
+
+  <rule id="aliment">
+    <item repeat="0-1">
+      <one-of>
+        <item>un</item><item>une</item><item>du</item><item>des</item><item>le</item><item>la</item>
+      </one-of>
+    </item>
+    <one-of>
+      <!-- Boissons -->
+      <item>café <tag>out = "type=BOISSON item=CAFE";</tag></item>
+      <item>lait <tag>out = "type=BOISSON item=LAIT";</tag></item>
+      <item>thé <tag>out = "type=BOISSON item=THE";</tag></item>
+      <item>jus d'orange <tag>out = "type=BOISSON item=JUS";</tag></item>
+
+      <!-- Desserts -->
+      <item>crème brûlée <tag>out = "type=DESSERT item=CREME";</tag></item>
+      <item>profiteroles <tag>out = "type=DESSERT item=PROFITEROLES";</tag></item>
+      <item>fraises <tag>out = "type=DESSERT item=FRAISES";</tag></item>
+    </one-of>
+  </rule>
+
+  <!-- Positions relatives sur le plateau -->
+  <rule id="position">
+    <item repeat="0-1">
+      <one-of><item>en</item><item>à</item><item>au</item></one-of>
+    </item>
+    <one-of>
+      <item>haut <tag>out = "pos=HAUT";</tag></item>
+      <item>gauche <tag>out = "pos=GAUCHE";</tag></item>
+      <item>droite <tag>out = "pos=DROITE";</tag></item>
+      <item>bas <tag>out = "pos=BAS";</tag></item>
+      <item>centre <tag>out = "pos=CENTRE";</tag></item>
+    </one-of>
+  </rule>
+
+</grammar>
